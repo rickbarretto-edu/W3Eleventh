@@ -1,4 +1,4 @@
-
+# pragma version ^0.4.3
 
 struct Card:
     name: String[64]
