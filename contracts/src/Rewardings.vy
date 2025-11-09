@@ -44,9 +44,10 @@ def claim() -> Cards.Card:
 
 
 @external
-def rewrite_rewards(cards: DynArray[Cards.Card, 128]):    
+def set(cards: DynArray[Cards.Card, 128]):    
     self.clear()
     self.fill(cards)
+
 
 @internal
 def clear():
