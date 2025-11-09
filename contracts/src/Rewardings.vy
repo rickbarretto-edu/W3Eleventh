@@ -31,9 +31,10 @@ def __init__():
     self.rewardings.append(Cards.Card(name="Maradona", power=100))
     self.rewardings.append(Cards.Card(name="Chech", power=100))
 
-@view
 @external
 def all() -> DynArray[Cards.Card, 128]:
+    Admins.must_be(msg.sender)
+
     return self.rewardings
 
 
@@ -51,7 +52,8 @@ def claim() -> Cards.Card:
 
 @external
 def set(cards: DynArray[Cards.Card, 128]):
-    assert Admins.is_admin(msg.sender), "Only admins can set rewardings."
+    Admins.must_be(msg.sender)
+
     self.clear()
     self.fill(cards)
 

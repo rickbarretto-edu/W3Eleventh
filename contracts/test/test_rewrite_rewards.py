@@ -36,5 +36,5 @@ def test_non_admin_cannot_set(rewardings):
     non_admin = boa.env.generate_address()
 
     with boa.env.prank(non_admin):
-        with boa.reverts("Only admins can set rewardings."):
+        with boa.reverts("Only admins can perform this action."):
             rewardings.set([])
