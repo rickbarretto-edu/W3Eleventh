@@ -9,14 +9,14 @@ def __init__():
 
 
 # Decorator function
-def only():
+def must_be(_user: address):
     """Decorator to restrict function access to admins only.
 
     Usage
     -----
         @external
         def admin_function():
-            Admins.only()
+            Admins.must_be()
 
     Future
     ------
@@ -28,7 +28,7 @@ def only():
         def some_function():
             ... 
     """
-    assert self.is_admin(msg.sender), "Only admins can perform this action."
+    assert self.is_admin(_user), "Only admins can perform this action."
 
 
 @view
