@@ -37,7 +37,7 @@ def claim() -> Cards.Card:
     assert len(Inventory._deck_of(msg.sender)) < 64, "User's deck must have available stock."
 
     claimed: Cards.Card = self.rewardings.pop()
-    Inventory.add_card_to(msg.sender, claimed)
+    Inventory.add_to(msg.sender, claimed)
 
     log Claimed(by=msg.sender, card=claimed)
     return claimed
