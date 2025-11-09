@@ -3,7 +3,9 @@
 
 import Cards
 import Inventory
+import Admins
 
+initializes: Admins
 initializes: Inventory
 
 event Claimed:
@@ -20,6 +22,8 @@ rewardings: public(DynArray[Cards.Card, 128])
 
 @deploy
 def __init__():
+    Admins.__init__()
+
     self.rewardings.append(Cards.Card(name="Lionel Messi", power=99))
     self.rewardings.append(Cards.Card(name="Cristiano Ronaldo", power=99))
     self.rewardings.append(Cards.Card(name="Ronaldinho", power=99))
@@ -47,7 +51,8 @@ def claim() -> Cards.Card:
 
 
 @external
-def set(cards: DynArray[Cards.Card, 128]):    
+def set(cards: DynArray[Cards.Card, 128]):
+    assert Admins.is_admin(msg.sender), "Only admins can set rewardings."
     self.clear()
     self.fill(cards)
 
