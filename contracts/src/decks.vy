@@ -1,7 +1,8 @@
+
 struct Card:
     name: String[64]
     power: uint8
-    
+
 event Claimed:
     by: address
     card: Card
@@ -24,11 +25,6 @@ def __init__():
     self.rewardings.append(Card(name="Pele", power=100))
     self.rewardings.append(Card(name="Maradona", power=100))
     self.rewardings.append(Card(name="Chech", power=100))
-
-
-@external
-def card(_name: String[64], _power: uint8) -> Card:
-    return Card(name=_name, power=_power)
     
 @view
 @external

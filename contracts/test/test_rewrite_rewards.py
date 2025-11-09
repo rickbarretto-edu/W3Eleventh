@@ -6,8 +6,12 @@ def decks():
     return boa.load("contracts/src/decks.vy")
 
 @pytest.fixture
-def sample_card(decks):
-    return decks.card("CR7", 99)
+def cards():
+    return boa.load("contracts/src/Cards.vy")
+
+@pytest.fixture
+def sample_card(cards):
+    return cards.card("CR7", 99)
 
 
 def test_initial_rewards(decks):
