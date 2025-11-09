@@ -27,7 +27,7 @@ def __init__():
 
 @view
 @external
-def all_rewardings() -> DynArray[Cards.Card, 128]:
+def all() -> DynArray[Cards.Card, 128]:
     return self.rewardings
 
 

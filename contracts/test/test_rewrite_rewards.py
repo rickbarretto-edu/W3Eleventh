@@ -15,9 +15,9 @@ def sample_card(cards):
 
 
 def test_initial_rewards(rewardings):
-    assert len(rewardings.all_rewardings()) == 7
+    assert len(rewardings.all()) == 7
 
 
 def test_rewrite_full(rewardings, sample_card):
     rewardings.rewrite_rewards([sample_card] * 128)
-    assert len(rewardings.all_rewardings()) == 128
+    assert len(rewardings.all()) == 128
