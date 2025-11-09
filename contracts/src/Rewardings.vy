@@ -5,7 +5,7 @@ import Cards
 import Inventory
 import Admins
 
-initializes: Admins
+uses: Admins
 initializes: Inventory
 
 event Claimed:
@@ -22,8 +22,7 @@ rewardings: public(DynArray[Cards.Card, 128])
 
 @deploy
 def __init__():
-    Admins.__init__()
-
+    Inventory.__init__()
     self.rewardings.append(Cards.Card(name="Lionel Messi", power=99))
     self.rewardings.append(Cards.Card(name="Cristiano Ronaldo", power=99))
     self.rewardings.append(Cards.Card(name="Ronaldinho", power=99))

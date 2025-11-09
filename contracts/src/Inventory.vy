@@ -1,17 +1,23 @@
 # pragma version ^0.4.3
 # pragma nonreentrancy on
 
+import Admins
 import Cards
+
+initializes: Admins
 
 decks: public(HashMap[address, DynArray[Cards.Card, 64]])
 
+@deploy
+def __init__():
+    Admins.__init__()
 
-@view
+
 @external
 def deck_of(user: address) -> DynArray[Cards.Card, 64]:
     return self._deck_of(user)
 
-@view
+
 def _deck_of(user: address) -> DynArray[Cards.Card, 64]:
     return self.decks[user]
 
