@@ -45,14 +45,14 @@ def claim() -> Cards.Card:
 
 @external
 def rewrite_rewards(cards: DynArray[Cards.Card, 128]):    
-    self.empty_rewardings()
-    self.fill_rewardings(cards)
+    self.clear()
+    self.fill(cards)
 
 @internal
-def empty_rewardings():
+def clear():
     self.rewardings = empty(DynArray[Cards.Card, 128])
 
         
 @internal
-def fill_rewardings(cards: DynArray[Cards.Card, 128]):
+def fill(cards: DynArray[Cards.Card, 128]):
     self.rewardings = cards
