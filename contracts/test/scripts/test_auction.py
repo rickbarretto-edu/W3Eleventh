@@ -62,8 +62,10 @@ def try_auction_another_card(seller_with_active_auction, trades, cards):
     seller = seller_with_active_auction
     card = cards.card("Card C", 30)
     old_auction = trades.auction_of(seller)
-    with boa.env.prank(seller):
-        trades.auction_card(card, 5)
+
+    with boa.env.reverts("You already have an active auction."):
+        with boa.env.prank(seller):
+            trades.auction_card(card, 5)
     return seller, old_auction
 
 

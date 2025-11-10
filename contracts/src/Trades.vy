@@ -40,6 +40,14 @@ def auction_at(_index: uint256) -> Auction:
 
 @external
 def auction_card(_card: Cards.Card, days: uint256) -> uint256:
+    existing: Auction = self.auctions[msg.sender]
+
+    is_owner: bool = existing.seller == msg.sender
+    is_alive: bool = existing.end_at > block.timestamp
+    is_active: bool = is_owner and is_alive
+    if is_active:
+        raise "You already have an active auction."
+
     auction: Auction = Auction(
         seller=msg.sender,
         card=_card,
