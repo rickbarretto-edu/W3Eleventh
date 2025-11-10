@@ -6,9 +6,7 @@ struct Card:
     power: uint8
 
 event CardCreated:
-    card_id: uint256
-    name: String[64]
-    power: uint8
+    card: Card
     at: uint256
 
 
@@ -33,7 +31,7 @@ def _new(_name: String[64], _power: uint8) -> Card:
     )
 
     self.register(new_card)
-    log CardCreated(card_id, _name, _power, block.timestamp)
+    log CardCreated(card=new_card, at=block.timestamp)
 
     return new_card
 
