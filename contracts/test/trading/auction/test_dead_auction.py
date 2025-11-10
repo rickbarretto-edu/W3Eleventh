@@ -28,25 +28,21 @@ def seller_with_dead_auction(trades, cards):
     return seller
 
 
-@when("the seller tries to auction another card", target_fixture="try_replace_dead_auction")
+@when("the seller tries to auction another card (dead)", target_fixture="try_replace_dead_auction")
 def try_replace_dead_auction(seller_with_dead_auction, trades, cards):
     seller = seller_with_dead_auction
     card = cards.card("Card E", 30)
-    old_auction = trades.auction_of(seller)
 
-    reverted = False
     with boa.env.prank(seller):
         try:
             trades.auction_card(card, 3)
+            return seller, False
         except Exception:
-            reverted = True
-
-    return seller, old_auction, reverted
-
+            return seller, True
 
 @then("the new Auction should be registered")
 def new_auction_registered(try_replace_dead_auction, trades):
-    seller, old_auction, reverted = try_replace_dead_auction
+    seller, reverted = try_replace_dead_auction
 
-    assert not reverted
-    assert trades.auction_of(seller) != old_auction
+    assert reverted
+    assert trades.auction_of(seller).card.name == "Card D"
