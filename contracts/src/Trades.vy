@@ -1,8 +1,9 @@
-#pragma version ^0.4.3
+# pragma version ^0.4.3
 # pragma nonreentrancy on 
 
 import Cards
 import Inventory
+uses: Inventory
  
 struct Proposal:
     by: address
@@ -49,11 +50,11 @@ def accept(_proposer: address):
     assert Inventory.has_card(proposer, proposal.given), "Proposer no longer owns the offered card"
     assert Inventory.has_card(receiver, proposal.over), "Receiver no longer owns the requested card"
 
-    Inventory.remove_card(proposer, proposal.given)
-    Inventory.remove_card(receiver, proposal.over)
+    Inventory.remove_from(proposer, proposal.given)
+    Inventory.remove_from(receiver, proposal.over)
 
-    Inventory.add_card(proposer, proposal.over)
-    Inventory.add_card(receiver, proposal.given)
+    Inventory.add_to(proposer, proposal.over)
+    Inventory.add_to(receiver, proposal.given)
 
     self.proposals[proposer] = empty(Proposal)
 
