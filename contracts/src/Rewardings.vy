@@ -6,7 +6,7 @@ import Inventory
 import Admins
 
 uses: Admins
-initializes: Inventory
+uses: Inventory
 
 event Claimed:
     by: address
@@ -22,7 +22,6 @@ rewardings: public(DynArray[Cards.Card, 128])
 
 @deploy
 def __init__():
-    Inventory.__init__()
     self.rewardings.append(Cards.Card(name="Lionel Messi", power=99))
     self.rewardings.append(Cards.Card(name="Cristiano Ronaldo", power=99))
     self.rewardings.append(Cards.Card(name="Ronaldinho", power=99))
