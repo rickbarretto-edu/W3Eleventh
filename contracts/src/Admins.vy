@@ -79,7 +79,7 @@ def exclude(user: address):
 
     self.admins = buffer
 
-
+@view
 def is_admin(user: address) -> bool:
     is_main: bool = user == self.main_admin
     is_sub: bool = user in self.admins
