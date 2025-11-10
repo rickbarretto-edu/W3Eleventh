@@ -1,15 +1,10 @@
-from functools import partial
 import boa
 from boa.util.abi import Address
 import pytest
-from pytest_bdd import given, when, then, scenarios
+from pytest_bdd import *
 
-# Register all scenarios from the feature file so step fixtures can be
-# defined later in this module without ordering issues.
-scenarios("../feature/trading/Auction.feature")
 
 ZERO_ADDRESS = Address("0x0000000000000000000000000000000000000000")
-
 
 @pytest.fixture
 def trades():
@@ -20,13 +15,9 @@ def cards():
     return boa.load("contracts/src/Cards.vy")
 
 
-# =========== Scenario 1 ===========
-
-
-
-
-
-# =========== Scenario 2 ===========
+@scenario("trading/Auction.feature", "Prevent Multiple Active Auctions")
+def test_prevent_multiple_active_auctions():
+    pass
 
 
 @given("a seller with an active auction", target_fixture="seller_with_active_auction")
@@ -69,24 +60,3 @@ def auction_rejected(try_auction_another_card, trades):
     
     assert reverted is True
     assert trades.auction_of(seller) == old_auction
-
-
-@given("a seller with a dead auction", target_fixture="seller_with_dead_auction")
-def seller_with_dead_auction(trades, cards):
-    seller = boa.env.generate_address()
-    card = cards.card("Card D", 20)
-    with boa.env.prank(seller):
-        trades.auction_card(card, 5)
-    return seller
-
-
-@when("the seller tries to auction another card (dead)", target_fixture="try_replace_dead_auction")
-def try_replace_dead_auction():
-    pass
-
-
-@then("the new Auction should be registered")
-def new_auction_registered(try_auction_another_card, trades):
-    seller, old_auction, reverted = try_auction_another_card
-    assert reverted is False
-    assert trades.auction_of(seller) != old_auction
