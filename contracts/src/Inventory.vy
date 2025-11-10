@@ -4,8 +4,13 @@
 import Admins
 import Cards
 
+initializes: Admins
 
 decks: public(HashMap[address, DynArray[Cards.Card, 64]])
+
+@deploy
+def __init__():
+    Admins.__init__()
 
 @external
 def deck_of(user: address) -> DynArray[Cards.Card, 64]:
