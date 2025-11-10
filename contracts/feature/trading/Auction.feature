@@ -12,5 +12,5 @@ Feature: Auction Card
 
     Scenario: Replacing a Dead Auction
         Given a seller with a dead auction
-        When the seller tries to auction another card
+        When the seller tries to auction another card (dead)
         Then the new Auction should be registered
