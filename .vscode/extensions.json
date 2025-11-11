@@ -6,6 +6,7 @@
         "ms-python.debugpy",
         "ms-python.vscode-python-envs",
         "kevinrose.vsc-python-indent",
-        "tintinweb.vscode-vyper"
+        "tintinweb.vscode-vyper",
+        "ms-vscode-remote.remote-containers"
     ]
 }
