@@ -11,4 +11,5 @@
         "tests/**/*.feature",
         "*specs*/**/*.feature"
     ],
+    "vyper.command": "poetry run vyper",
 }

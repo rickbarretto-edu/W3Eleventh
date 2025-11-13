@@ -13,6 +13,13 @@
 
 	// Use 'postCreateCommand' to run commands after the container is created.
 	"postCreateCommand": "sh bootstrap.sh",
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"tintinweb.vscode-vyper"
+			]
+		}
+	},
 
 	// Configure tool-specific properties.
 	// "customizations": {},
