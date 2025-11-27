@@ -16,7 +16,10 @@
 	"customizations": {
 		"vscode": {
 			"extensions": [
-				"tintinweb.vscode-vyper"
+				"tintinweb.vscode-vyper",
+				"ms-vscode.vscode-typescript-next",
+				"AckeeBlockchain.tools-for-solidity",
+				"NomicFoundation.hardhat-solidity"
 			]
 		}
 	},
